@@ -39,3 +39,39 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+
+
+{
+  "username": "admin_user",
+  "email": "admin@example.com",
+  "password": "SecurePass123",
+  "role": "admin",
+  "isActive": true
+}
+{
+  "username": "editor_user",
+  "email": "editor@example.com",
+  "password": "EditorPass456",
+  "role": "editor",
+  "isActive": true
+}
+{
+  "username": "viewer_user",
+  "email": "viewer@example.com",
+  "password": "ViewerPass789",
+  "role": "viewer",
+  "isActive": true
+}
+{
+  "username": "test_user",
+  "email": "test@example.com",
+  "password": "TestPass123"
+}
+{
+  "username": "inactive_user",
+  "email": "inactive@example.com",
+  "password": "InactivePass123",
+  "role": "admin",
+  "isActive": false
+}

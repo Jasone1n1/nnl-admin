@@ -1,18 +1,17 @@
-// app/api/admin/users/route.ts
 import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/dbConnect';
 import User from '@/models/User';
-import bcrypt from 'bcryptjs';
 
 export async function GET() {
   try {
     await dbConnect();
-    const users = await User.find({}).select('-password'); // exclude password field for safety
+    const users = await User.find({}).select('-password');
     return NextResponse.json(users);
   } catch {
     return NextResponse.json({ error: 'Failed to fetch users' }, { status: 500 });
   }
 }
+
 export async function POST(req: Request) {
   try {
     await dbConnect();
@@ -21,24 +20,30 @@ export async function POST(req: Request) {
     const { username, email, password, role = 'viewer', isActive = true } = body;
 
     if (!username || !email || !password) {
-      return NextResponse.json({ error: 'username, email, and password required' }, { status: 400 });
+      return NextResponse.json({ error: 'Username, email, and password are required' }, { status: 400 });
     }
 
-    // Check user exists
-    const exists = await User.findOne({ $or: [{ username }, { email }] });
+    if (typeof password !== 'string' || password.length < 6) {
+      return NextResponse.json({ error: 'Password must be at least 6 characters' }, { status: 400 });
+    }
+
+    const allowedRoles = ['admin', 'editor', 'viewer'];
+    if (role && !allowedRoles.includes(role)) {
+      return NextResponse.json({ error: 'Invalid role' }, { status: 400 });
+    }
+
+    const exists = await User.findOne({ $or: [{ username: username.trim() }, { email: email.trim().toLowerCase() }] });
     if (exists) {
-      return NextResponse.json({ error: 'User already exists' }, { status: 409 });
+      return NextResponse.json({ error: 'A user with this username or email already exists' }, { status: 409 });
     }
 
-    // Hash password
-    const hashedPassword = await bcrypt.hash(password, 10);
-
+    // User model pre('save') hashes the password
     const user = new User({
-      username,
-      email,
-      password: hashedPassword,
-      role,
-      isActive,
+      username: username.trim(),
+      email: email.trim().toLowerCase(),
+      password,
+      role: role || 'viewer',
+      isActive: isActive !== false,
     });
 
     await user.save();

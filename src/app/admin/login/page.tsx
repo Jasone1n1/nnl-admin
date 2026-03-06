@@ -68,7 +68,7 @@ export default function AdminLoginPage() {
                   Admin Login
                 </h1>
                 <p className="mt-1 text-sm text-slate-500">
-                  Sign in to the NNL control panel
+                  Sign in to the Lending Tree Control Panel
                 </p>
               </CardHeader>
               <CardContent className="p-0">

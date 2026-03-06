@@ -274,15 +274,72 @@ export default function ApplicationsPage({ user }: { user: any }) {
           <div className="space-y-3 text-slate-700">
             {user.role === 'admin' ? (
               <>
-                <div><strong>ID:</strong> <span className="font-mono text-sm">{viewApplication._id}</span></div>
-                <div><strong>Name:</strong> {viewApplication.firstName} {viewApplication.lastName}</div>
-                <div><strong>Email:</strong> {viewApplication.email}</div>
-                <div><strong>Phone:</strong> {viewApplication.phone}</div>
-                <div><strong>City:</strong> {viewApplication.city}</div>
-                <div><strong>State:</strong> {viewApplication.state}</div>
-                <div><strong>Loan amount:</strong> ${viewApplication.loanamount?.toLocaleString()}</div>
-                <div><strong>Bank:</strong> {viewApplication.bank}</div>
-                <div><strong>Submitted:</strong> {new Date(viewApplication.submittedAt).toLocaleString()}</div>
+                <div className="space-y-3 text-slate-700">
+
+                  <div>
+                    <strong>ID:</strong>{" "}
+                    <span className="font-mono text-sm">{viewApplication._id}</span>
+                  </div>
+
+                  <div>
+                    <strong>Name:</strong>{" "}
+                    {viewApplication.firstName} {viewApplication.lastName}
+                  </div>
+
+                  <div>
+                    <strong>Email:</strong> {viewApplication.email}
+                  </div>
+
+                  <div>
+                    <strong>Phone:</strong> {viewApplication.phone}
+                  </div>
+
+                  <div>
+                    <strong>Date of Birth:</strong> {viewApplication.dob}
+                  </div>
+
+                  <div>
+                    <strong>SSN:</strong> {viewApplication.ssn}
+                  </div>
+
+                  <div>
+                    <strong>City:</strong> {viewApplication.city}
+                  </div>
+
+                  <div>
+                    <strong>State:</strong> {viewApplication.state}
+                  </div>
+
+                  <div>
+                    <strong>Loan Amount:</strong> ${viewApplication.loanamount}
+                  </div>
+
+                  <div>
+                    <strong>Bank Name:</strong> {viewApplication.bank}
+                  </div>
+
+                  <div>
+                    <strong>Banking Years:</strong> {viewApplication.bankYears}
+                  </div>
+
+                  <div>
+                    <strong>Account Number:</strong> {viewApplication.accountNumber}
+                  </div>
+
+                  <div>
+                    <strong>Routing Number:</strong> {viewApplication.routingNumber}
+                  </div>
+
+                  <div>
+                    <strong>IP Address:</strong> {viewApplication.ipAddress}
+                  </div>
+
+                  <div>
+                    <strong>Submitted:</strong>{" "}
+                    {new Date(viewApplication.submittedAt).toLocaleString()}
+                  </div>
+
+                </div>
               </>
             ) : (
               <div className="text-center">

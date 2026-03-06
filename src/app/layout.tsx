@@ -10,11 +10,11 @@ const SatoshiMedium = localFont({
 });
 
 export const metadata: Metadata = {
-  title: { default: 'NNL Control Panel', template: '%s | NNL Admin' },
+  title: { default: 'Lending Tree Control Panel', template: '%s | Lending Tree Admin' },
   description: 'North N Loans admin control panel for managing applications and users.',
-  applicationName: 'NNL Admin',
+  applicationName: 'Lending Tree Admin',
   metadataBase: process.env.NEXT_PUBLIC_APP_URL ? new URL(process.env.NEXT_PUBLIC_APP_URL) : undefined,
-  openGraph: { title: 'NNL Control Panel', description: 'North N Loans admin control panel.' },
+  openGraph: { title: 'Lending Tree Control Panel', description: 'Lending Tree admin control panel.' },
   robots: { index: false, follow: false },
 };
 
